@@ -13,41 +13,18 @@
     <button onclick="go()">Surprise me</button>
   </div>
 
-  <script>
-    const titles = [
-      "Ship It 🚀",
-      "Build > Talk",
-      "Chaos Mode On",
-      "Random Wins",
-      "Hello, World++"
-    ];
-    const messages = [
-      "This button does nothing useful. Perfect.",
-      "Productivity is optional today.",
-      "If it works, don’t touch it.",
-      "You clicked. The universe noticed.",
-      "Minimal effort, maximum vibes."
-    ];
-
-    function go() {
-      const t = titles[Math.floor(Math.random()*titles.length)];
-      const m = messages[Math.floor(Math.random()*messages.length)];
-      document.getElementById("title").textContent = t;
-      document.getElementById("msg").textContent = m;
-
-      const dots = document.getElementById("dots");
-      dots.innerHTML = "";
-      const n = Math.floor(Math.random()*12)+3;
-      for (let i=0; i<n; i++) {
-        const d = document.createElement("span");
-        d.className = "dot";
-        d.style.opacity = Math.random();
-        d.style.transform = `scale(${Math.random()*1.8+0.4})`;
-        dots.appendChild(d);
-      }
-      document.body.style.background =
-        `linear-gradient(135deg, hsl(${Math.random()*360},80%,70%), hsl(${Math.random()*360},80%,80%))`;
-    }
+    <script>
+        function go() {
+        const messages = [
+            "You are awesome!",
+            "Keep pushing forward!",
+            "Believe in yourself!",
+            "Every day is a new opportunity.",
+            "Stay positive and strong!"
+        ];
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        document.getElementById("msg").innerText = messages[randomIndex];
+        }
   </script>
 </body>
 </html>
