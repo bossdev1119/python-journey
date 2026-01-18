@@ -38,14 +38,30 @@ def subtract(a,b):
 def multiply(a,b):
     return a*b
 def divide(a,b):
-    if b!=0 :
-        return a/b
-    else :
-        print("Error! Division by zero.")
+    if b==0:
+        return None
+    return a/b
 
+def get2number():
+    while True :
+        userInput= input("Enter 2 numbers with space : ").strip()
+        if not userInput:
+            print("input cannot be empty")
+            continue
 
-print("")
-print(''' 
+        piece = userInput.split()
+
+        if len(piece)!=2 :
+            print("you can enter only 2 numbers")
+            continue
+        try: 
+            x= float(piece[0])
+            y = float(piece[1])
+            return x,y
+        except ValueError:
+            print("Enter valid numbers")
+
+print('''  
     CALCULATOR
       
         1. Addition
@@ -64,8 +80,8 @@ while True:
     except ValueError:
         print("oops ! you must enter an INTEGER\n")
 
+x,y = get2number()
 
-x,y = map(int,input("Enter two numbers separated by space: ").split())
 if num=='1':
     print(f"ans : ",add(x,y))
 elif num=='2':
@@ -73,4 +89,10 @@ elif num=='2':
 elif num=='3':
     print("ans : " ,multiply(x,y))       
 elif num=='4':
-    print("ans : " ,divide(x,y))
+    division = divide(x,y)
+    if division is None:
+        print("error ! division by zero ")
+    else :
+        print("ans : ", division)
+
+    
