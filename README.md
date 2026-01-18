@@ -1,6 +1,6 @@
 # python-journey
 
-basics python --> projects --> learn
+basics python --> projects --> learn ,
 starting my journey on 6 jan with HP victus 
-i learn to connect github to vscode
+i learnt to connect github to vscode
 changed 
