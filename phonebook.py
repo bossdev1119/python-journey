@@ -3,29 +3,36 @@ phonebook ={}
 def add_contact(name , phone):
    phonebook[name]= phone
 
-def search_contact(contact):
-    if contact in phonebook:
-        return phonebook[contact]
-    elif int(contact) in phonebook.values():
-        for name, phone in phonebook.items():
-            if phone == contact:
-                break
-        return phonebook[name]
+def searchName(contact_search):
+    if contact_search in phonebook:
+        return name , phonebook[contact_search]
     else:
         return None
     
+def searchContact(contact_search):
+    if contact_search in phonebook.values():
+        for name ,phone in phonebook.items():
+            if phone ==contact_search:
+                return name, phonebook[name]
+    else:
+        return None
     
-def delete_contact(contact):
-    if contact in phonebook:
-        del phonebook[contact] 
+
+    
+    
+def delete_contact(contact_delete):
+
+    if contact_delete in phonebook:
+        del phonebook[contact_delete] 
         return True
-    elif int(contact) in phonebook.values():
-        for name, phone in phonebook.items():
-            if phone == contact:
+    
+    if contact_delete.isdigit():
+        contact_delete=int(contact_delete)
+        for name,phone in phonebook.items():
+            if phone==contact_delete:
                 del phonebook[name]
-            return True
-    else:
-        return None
+                return True 
+        
 
 while True:
         print(''' 
@@ -50,25 +57,38 @@ while True:
 
                 except ValueError:
                     print("Invalid phone number!")
+
         elif userInput==2:
-            contact= input("search: ")
-            result= search_contact(contact)
-            if result is not None:
-                if contact in phonebook:
-                    print(f"Contact found:\n {contact} : {result}")
-                    
+            contact_search= input("search: ")
+            if contact_search.isdigit():
+                contact_search= int(contact_search)
+                result= searchContact(contact_search)
+                
+                if result : #asking question if function found something 
+                    name , phone = result 
+                    print(f"Contact found:\n {name} : {phone}")
                 else:
-                    print(f"Contact found:\n {name} : {result}")
+                    print("Contact not found")
             else:
-                print("Contact not found")
+                result= searchName(contact_search)
+                
+                if result :
+                    name,phone = result
+                    print(f"Contact found:\n {name} : {phone}")
+                else:
+                    print("Contact not found")
 
         elif userInput==3:
-            contact= input("Enter contact: ")
-            result = delete_contact(contact)
-            if result is not None:
-                print(f"Contact {contact} deleted successfully")
+            contact_delete= input("Enter contact: ")
+            confirm =input("do you really want to delete this contact? y/n ")
+            if confirm=='y'or confirm=='Y':
+                result=delete_contact(contact_delete)
+                if result : # asking question if function found something 
+                    print("Contact deleted successfully")
+                else:
+                    print("Contact not found")
             else:
-                print("Contact not found")
+                break
 
         elif userInput==4:
             print("All Contacts:")
